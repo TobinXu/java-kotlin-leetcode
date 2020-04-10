@@ -1,1 +1,32 @@
 //从有序链表中删除重复节点
+//常规做法，将目前的结点和下一个结点进行比较，如果一样的话，那么将下一个借点跳过
+//将当前的结点连接到下一个结点的结点。
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode current=head;
+        while(current!=null&&current.next!=null){
+            if(current.next.val==current.val){//判断是否想当
+                current.next=current.next.next;//相等的话将下一个结点的结点连接到当前节点
+            }
+            else{
+                current=current.next;
+            }
+        }
+        return head;
+
+    }
+}
+
+//递归做法
+//递归注重的是边界条件以及返回哪个结点
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+       if(head==null||head.next==null){
+           return head;
+       }
+       head.next=deleteDuplicates(head.next);//这里是怎么到下面的，不应该无限循环了么，实际上有点不懂
+       if(head.val==head.next.val)head=head.next;
+       return head;
+
+    }
+}
