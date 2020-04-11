@@ -1,0 +1,20 @@
+//万万没想到之聪明的编辑
+//崩溃了，字节跳动这算法题也太难了。。。有人用正则匹配做出来了
+//看了两个小时学了一点点java的正则匹配，还是没看懂
+import java.util.Scanner;
+public class Main{
+public static void main(String[] args){
+      Scanner scanner=new Scanner(System.in);
+      int line=scanner.nextInt();
+      scanner.nextLine();
+      for(int i=0;i<line;i++){
+      System.out.println(scanner.nextLine().replaceAll("(.)\\1+","$1$1").replaceAA("(.)\\1(.)\\2","$1$1$2"));
+      }
+     }
+   }
+//第一个正则把3个以上的字符换成2个，第二个正则把AABB型换成AAB型。
+//第二个正则优先匹配AABB
+巩固知识：
+(.)\\1+表示任意一个字符重复两次或两次以上（括号里的点表示任意字符，后面的\\1表示取第一个括号匹配的内容，后面的加号表示匹配1次或1次以上。
+两者加在一起就是某字符重复两次或两次以上）
+$1是第一个小括号里的内容,$2是第二个小括号里的内容。
