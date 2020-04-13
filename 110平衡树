@@ -1,0 +1,21 @@
+//利用递归和平衡二叉树的性质（左右子树高度相差不超过1）
+
+
+
+ class Solution {
+	private boolean result=true;
+	
+	public boolean isBalanced(TreeNode root) {
+		maxDepth(root);
+		return result;
+	}
+	
+	public int maxDepth(TreeNode root) {
+		if(root==null)return 0;//如果根节点为0，则为空树，是平衡二叉树
+		int l=maxDepth(root.left);//向左节点递归下去，计算深度
+		int r=maxDepth(root.right);//向右节点递归下去，计算深度
+		if(Math.abs(l-r)>1)result=false;//如果左右子树深度大于一，不是平衡二叉树
+		return 1+Math.max(l, r);//是平衡二叉树的话，返回最大深度
+	}
+
+}
