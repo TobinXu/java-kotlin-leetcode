@@ -1,0 +1,29 @@
+运用递归
+//终止条件：当前节点为null时返回
+//交换当前节点的左右节点，再递归的交换当前节点的左节点，递归的交换当前节点的右节点
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        //递归函数终止条件，节点为空时返回
+        if(root==null)return null;
+        //下面三句是将当前节点的左右子树交换
+        TreeNode tmp=root.right;
+        root.right=root.left;
+        root.left=tmp;
+        //递归交换当前节点的 左子树
+        invertTree(root.left);
+        //递归交换当前的 右子树
+        invertTree(root.right);
+        //函数返回时就表示当前这个结点以及它的左右子树已交换完成
+        return root;
+
+    }
+}
