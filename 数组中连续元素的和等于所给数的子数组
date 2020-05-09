@@ -35,3 +35,42 @@ public class continueElements {
 		a.test();
 	}
 }
+
+
+//经常有面试题让你匹配有多少组，其实使用一个累加即可
+package com.byteDance;
+import java.util.*;
+
+public class continueElements {
+	public void test() {
+		int[] num= {1,2,2,3,4,5,6,7,8,9};
+		int sum=7;
+		findsum(num,sum);
+	}
+	
+	public void findsum(int[] num,int sum) {
+		int right=0;
+		int left=0;
+		int count=0;
+		for(int i=0;i<num.length;i++) {
+			right=i;
+			left=i;
+			int curSum=0;
+			while(curSum<sum) {
+				curSum+=num[right++];
+			}
+			if(curSum==sum) {
+				for(int j=left;j<right;j++) {
+					System.out.print(num[j]+" ");
+				}
+				count++;//累加有多少组
+				System.out.println();
+			}
+		}
+		System.out.print(count);//输出匹配组数
+	}
+	public static void main(String args[]) {
+		continueElements a = new continueElements();
+		a.test();
+	}
+}
