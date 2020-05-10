@@ -38,3 +38,45 @@ public class kuohaopipei {
 	}
 
 }
+
+
+
+今天尝试了一下用变量代替栈，将空间复杂度降为O(1)，成功了！
+package kuaishou;
+import java.util.*;
+public class kuohaopipei {
+	public static boolean isValid(String s) {
+		int num=0;
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)=='('||s.charAt(i)=='['||s.charAt(i)=='{') {
+				num++;   //假装入栈操作num++
+			}
+			if(s.charAt(i)==')'||s.charAt(i)==']'||s.charAt(i)=='}') {
+
+				if(num==0) {
+					return false; //num==0,说明想象中的栈里面没有左括号用来匹配
+				}
+			}
+
+			if(s.charAt(i)==')'||s.charAt(i)==']'
+					||s.charAt(i)=='}') {
+				if(num>0) //如果num>0，说明有左括号可以用来匹配
+				num--;  //假装出栈操作num--
+			}
+		}
+		if(num==0)  //最终如果num==0，说明全部匹配成功，否则失败
+			return true;
+		else
+			return false;
+		}
+	
+	
+	public static void main(String[] args) {
+		System.out.println("Please enter a sentence include'(',')','{','}','[',']':");
+		Scanner sc=new Scanner(System.in);
+		String str=sc.nextLine();
+		System.out.println("The result is:"+isValid(str));
+	}
+
+}
+
