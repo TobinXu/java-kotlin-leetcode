@@ -1,0 +1,74 @@
+//正确答案
+package com.byteDance;
+
+public class quick_sort {
+	
+	private static void quickSort(int[] arr,int l,int r) {
+		if(l<r) {
+			int index=getIndex(arr,l,r);
+			quickSort(arr,l,index-1);
+			quickSort(arr,index+1,r);
+
+		}	
+	}
+	
+	public static int getIndex(int s[], int l, int r){
+	
+			int x=s[l];
+			while(l<r) {
+				while(l<r&&s[r]>=x)
+					r--;
+				if(l<r)
+					s[l]=s[r];
+				while(l<r&&s[l]<=x)
+					l++;
+				if(l<r)
+					s[r]=s[l];
+			}
+			s[l]=x;
+			return l;
+		
+	}
+	public static void main(String args[]) {
+		int[] k1={72,6,57,88,60,42,83,73,48,85};
+		quickSort(k1,0,k1.length-1);
+		for(int i:k1) {
+			System.out.print(i+" ");
+		}
+	}
+}
+
+
+
+//错误答案
+package com.byteDance;
+
+public class quick_sort {
+	int quick_sort(int s[], int l, int r){
+		if(l<r) {
+			int i=l,j=r,x=s[l];
+			while(i<j) {
+				while(i<j&&s[l]>=x)
+					j--;
+				if(i<j)
+					s[i++]=s[l];
+				while(i<j&&s[l]<=x)
+					i++;
+				if(i<j)
+					s[j--]=s[i];
+			}
+			s[i]=x;
+			quick_sort(s,l,i-1);
+			quick_sort(s,i+1,r);
+		}
+		
+	}
+	public static void main(String args[]) {
+		quick_sort k =new quick_sort();
+		int[] k1=new int[] {72,6,57,88,60,42,83,73,48,85};
+		k.quick_sort(k1,0,9);
+		for(int i=0;i<k1.length;i++) {
+			System.out.print(k1[i]+" ");
+		}
+	}
+}
