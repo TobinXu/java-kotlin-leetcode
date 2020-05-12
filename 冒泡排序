@@ -1,0 +1,86 @@
+//最简单的想法是循环遍历两两比较（从小到大），这样的话把两个元素交换位置，其中大的向后移动
+//注意如果数组中有五个的话，两两比较只用比较四次，即n个元素比较n-1次
+//注意第二层循环比较长度，因为第一次循环找到一个最大的并将其移动到最后一位，同理每一次循环都会找到一个大值，移动到相应的位置
+//这种情况下，第二层循环每比较一圈就会在下一圈中少比较一次
+
+1.最简单的双层循环遍历比较。时间复杂度O（n^2）
+
+package com.byteDance;
+public class pop_Sort {
+	public static void main(String args[]) {
+		int[] arr= {1,4,2,6,8,9};
+		for(int i=0;i<arr.length-1;i++) {  //如果是n个元素的话两两比较总圈数只要n-1次
+			for(int j=0;j<arr.length-i-1;j++) {  //这里减去i的作用是因为第一次遍历后最大元素已经归位到最后，所以下次比较的时候忽略它。
+				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的前移（从小到大排序）
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+		for(int num:arr) {  //输出排序好的数组元素
+			System.out.print(num+" ");
+		}
+	}
+}
+
+
+加入flag进行改进，时间复杂度为O(n)
+
+package com.byteDance;
+public class pop_Sort {
+	public static void main(String args[]) {
+		int[] arr= {1,4,2,6,8,9};
+		for(int i=0;i<arr.length-1;i++) {  //如果是n个元素的话两两比较总圈数只要n-1次
+			int flag=1; //加入标志位判断，改进
+			for(int j=0;j<arr.length-i-1;j++) {  //这里减去i的作用是因为第一次遍历后最大元素已经归位到最后，所以下次比较的时候忽略它。
+				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的前移（从小到大排序）
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+					flag=0;  //如果发生交换将flag赋值0
+				}
+			}
+			if(flag==1)
+				break;  //如果再一次循环中没有进行两两交换（flag没有赋值0）则排序好了，结束
+		}
+		for(int num:arr) {  //输出排序好的数组元素
+			System.out.print(num+" ");
+		}
+		
+	}
+}
+
+
+在加入flag的基础上加入判断最后一次进行比较的位置符号，再次提升时间复杂度。
+思想：用一个position标志位来记录最后一次交换的位置，然后下次内循环的时候只用在0~position之间进行比较，因为后面的元素已经归位了。
+
+package com.byteDance;
+public class pop_Sort {
+	public static void main(String args[]) {
+		int[] arr= {1,4,2,6,8,9};
+		int position=0;  //记录最后一次交换的位置
+		int len=arr.length-1;
+		for(int i=0;i<arr.length-1;i++) {  //如果是n个元素的话两两比较总圈数只要n-1次
+			int flag=1; //加入标志位判断，改进
+			for(int j=0;j<len;j++) {  //这里减去i的作用是因为第一次遍历后最大元素已经归位到最后，所以下次比较的时候忽略它。
+				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的前移（从小到大排序）
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+					flag=0;  //如果发生交换将flag赋值0
+					position=j;
+				}
+			}
+			len=position;  //把最后一次交换的位置传递给len，来缩减第二个for循环里面跑的次数
+			if(flag==1)
+				break;  //如果再一次循环中没有进行两两交换（flag没有赋值0）则排序好了，结束
+		}
+		for(int num:arr) {  //输出排序好的数组元素
+			System.out.print(num+" ");
+		}
+		
+	}
+}
+
+
