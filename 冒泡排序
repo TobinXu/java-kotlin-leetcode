@@ -25,7 +25,7 @@ public class pop_Sort {
 }
 
 
-加入flag进行改进，时间复杂度为O(n)
+2.加入flag进行改进，时间复杂度为O(n)
 
 package com.byteDance;
 public class pop_Sort {
@@ -52,7 +52,7 @@ public class pop_Sort {
 }
 
 
-在加入flag的基础上加入判断最后一次进行比较的位置符号，再次提升时间复杂度。
+3.在加入flag的基础上加入判断最后一次进行比较的位置符号，再次提升时间复杂度。
 思想：用一个position标志位来记录最后一次交换的位置，然后下次内循环的时候只用在0~position之间进行比较，因为后面的元素已经归位了。
 
 package com.byteDance;
