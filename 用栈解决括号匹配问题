@@ -80,3 +80,37 @@ public class kuohaopipei {
 
 }
 
+js实现
+function SingUp(arr){
+    var arr=['{','(','[',']',')','}'];
+    var temp =[];
+    var flag=true;
+    for(let i=0;i<arr.length;i++){
+        var x=arr[i];
+        switch(x){
+            case '(' :
+            case '{' :
+            case '[' :
+            temp.push(x);
+            break;
+            case ')' :
+            case '}' :
+            case ']' :
+                topEle=temp.pop();
+                if(topEle=='{'&&x=='}'||topEle=='('&&x==')'||topEle=='['&&x==']'){
+                   continue;
+                }
+                else{
+                    // console.log('括号不匹配')将标志位置为false;
+                    flag=false;
+                }
+        }
+    }
+    if(flag){
+        console.log('括号匹配');
+    } else {
+        console.log('括号不匹配');
+    }
+}
+SingUp();
+
