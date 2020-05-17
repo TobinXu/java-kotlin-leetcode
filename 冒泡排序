@@ -11,7 +11,7 @@ public class pop_Sort {
 		int[] arr= {1,4,2,6,8,9};
 		for(int i=0;i<arr.length-1;i++) {  //如果是n个元素的话两两比较总圈数只要n-1次
 			for(int j=0;j<arr.length-i-1;j++) {  //这里减去i的作用是因为第一次遍历后最大元素已经归位到最后，所以下次比较的时候忽略它。
-				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的前移（从小到大排序）
+				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的后移（从小到大排序）
 					int temp=arr[j];
 					arr[j]=arr[j+1];
 					arr[j+1]=temp;
@@ -34,7 +34,7 @@ public class pop_Sort {
 		for(int i=0;i<arr.length-1;i++) {  //如果是n个元素的话两两比较总圈数只要n-1次
 			int flag=1; //加入标志位判断，改进
 			for(int j=0;j<arr.length-i-1;j++) {  //这里减去i的作用是因为第一次遍历后最大元素已经归位到最后，所以下次比较的时候忽略它。
-				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的前移（从小到大排序）
+				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的后移（从小到大排序）
 					int temp=arr[j];
 					arr[j]=arr[j+1];
 					arr[j+1]=temp;
@@ -52,7 +52,7 @@ public class pop_Sort {
 }
 
 
-3.在加入flag的基础上加入判断最后一次进行比较的位置符号，再次提升时间复杂度。
+3.在加入flag的基础上加入判断最后一次进行比较的位置符号，再次降低时间复杂度。
 思想：用一个position标志位来记录最后一次交换的位置，然后下次内循环的时候只用在0~position之间进行比较，因为后面的元素已经归位了。
 
 package com.byteDance;
@@ -64,7 +64,7 @@ public class pop_Sort {
 		for(int i=0;i<arr.length-1;i++) {  //如果是n个元素的话两两比较总圈数只要n-1次
 			int flag=1; //加入标志位判断，改进
 			for(int j=0;j<len;j++) {  //这里减去i的作用是因为第一次遍历后最大元素已经归位到最后，所以下次比较的时候忽略它。
-				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的前移（从小到大排序）
+				if(arr[j]>arr[j+1]) {  //这里做一个两数较大的后移（从小到大排序）
 					int temp=arr[j];
 					arr[j]=arr[j+1];
 					arr[j+1]=temp;
@@ -83,4 +83,65 @@ public class pop_Sort {
 	}
 }
 
+暴力js
+function pop_sort(){
+    var arr=[1,4,2,6,9,8];
+    for(let i=0;i<arr.length-1;i++){
+        for(let j=0;j<arr.length-1-i;j++){
+            if(arr[j]>arr[j+1]){
+                var temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;       
+            }
+        }
+    } 
+   console.log(arr);
+}
+pop_sort();
+
+标志位
+function pop_sort(){
+    var arr=[1,4,2,6,9,8];
+    var flag=1;
+    for(let i=0;i<arr.length-1;i++){
+        for(let j=0;j<arr.length-1-i;j++){
+            if(arr[j]>arr[j+1]){
+                var temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+                flag=0;       
+            }
+        }
+        if(flag==1){
+            break;
+        }
+    } 
+   console.log(arr);
+}
+pop_sort();
+
+标志位+position
+function pop_sort(){
+    var arr=[1,4,2,6,9,8];
+    var flag=1;
+    var position=0;
+    var len=arr.length-1;
+    for(let i=0;i<arr.length-1;i++){
+        for(let j=0;j<len;j++){
+            if(arr[j]>arr[j+1]){
+                var temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+                flag=0;  
+                position=j;     
+            }
+        }
+        len=position;
+        if(flag==1){
+            break;
+        }
+    } 
+   console.log(arr);
+}
+pop_sort();
 
