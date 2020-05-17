@@ -1,4 +1,4 @@
-//正确答案
+//正确答案  挖萝卜坑法
 package com.byteDance;
 
 public class quick_sort {
@@ -37,6 +37,38 @@ public class quick_sort {
 		}
 	}
 }
+
+
+哨兵相遇交换法（js）
+
+function Quick_sort(arr,l,r){
+    var i=l; //哨兵i
+    var j=r; //哨兵j
+    var key=arr[l]; //基准数
+    if(l>=r){return;}  //如果数组只有一个元素，退出
+    while(i<j){
+        while(i<j&&arr[j]>key){ //从右往左找，找第一个比key小的数，找到或者两个哨兵相遇跳出循环
+            j--;
+        }
+        while(i<j&&arr[i]<=key){ //从左往右找，找第一个比key大的数，找到或者两个哨兵相遇跳出循环
+            i++;                 //=号的目的是防止key和arr[j]进行交换
+        }
+        if(i<j){ //交换元素
+        var temp=arr[j];
+        arr[j]=arr[i];
+        arr[i]=temp;
+        }
+    }
+    arr[l]=arr[i];
+    arr[i]=key;
+    Quick_sort(arr,l,i-1);
+    Quick_sort(arr,i+1,r);
+}
+
+var arr=[1,4,2,3,8,3,5,9,1,4];
+console.log(arr);
+Quick_sort(arr,0,arr.length-1);
+console.log(arr);
 
 
 
