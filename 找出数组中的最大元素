@@ -1,2 +1,35 @@
-var a = [1,2,3,4,5,6,15];
- Math.max.apply(null,a)；
+var list = [1,2,3,4,5,6,15];
+ Math.max.apply(null,list);
+ 
+ alert(Math.min.apply(null,list));//获取数组中最小值
+
+alert(Math.max.apply(null,list));//获取数组中的最大值
+ 
+Math.min()虽然能取到最小值，但是不支持数组。
+console.log(Math.max(list));   # NaN
+所以需要用apply将数组一个个进行传参。
+apply中第一个参数指向一个对象，第二个是用数组存储的元素。
+
+冒泡排序一遍就可以找到O(n)
+
+public static void main(String[] args) {
+    int[] Arr = {-2, 5, 6, 9, 8, 7, 88, 99, 666, 888, 356, 845, 685, 687, 584, -1520};
+    //调用方法
+    int Max = getArrMax(Arr);
+    System.out.println(Max);
+}
+
+//写一个方法,用来求出数组中的最大值,是有返回值的
+public static int getArrMax(int[] Arr) {
+
+    //定义平台上的一个参照人,用来对比身高
+    int Max = Arr[0];
+    //对数组进行遍历
+    for (int x = 0; x < Arr.length; x++) {
+        //将数组中的元素拿出来依次同选高平台上的人进行对比,如果高就留下来
+        if (Arr[x] > Max) {
+            Max = Arr[x];
+        }
+    }
+    return Max;
+}
