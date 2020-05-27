@@ -4,12 +4,12 @@
 //下面这个头插法我感觉和三指针遍历的思想差不多，都是把指针转向
 class Solution {
     public ListNode reverseList(ListNode head) {
-        ListNode new_head=null;//新链表的尾结点
+        ListNode new_head=null;// 初始化新链表
         while(head!=null){
-            ListNode temp=head;//记录结点
-            head=head.next;//后移
-            temp.next=new_head;//将结点插入到新链表表头  注意 这款我感觉就是把结点指针信息从右换到左。。。
-            new_head=temp;//更新新链表表头
+            ListNode temp=head;// 记录原头结点
+            head=head.next;// 头结点后移
+            temp.next=new_head;// 将结点插入到新链表表头  注意 这款我感觉就是把结点指针信息从右换到左。。。
+            new_head=temp;// 更新新链表表头
         }
         return new_head;
 
@@ -33,3 +33,26 @@ class Solution {
 
     }
 }
+
+// 反转链表 头插法
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+    let new_head = null;
+    while(head !== null){
+    let temp = head;   
+    head = head.next;
+    temp.next = new_head;
+    new_head = temp;
+    }
+    return new_head;
+};
