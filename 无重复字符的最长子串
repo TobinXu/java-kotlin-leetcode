@@ -1,0 +1,12 @@
+//  无重复字符的最长子串
+var lengthOfLongestSubstring = function(s) {
+    var num = s.split("");
+    var count = 0;
+    for (let i = 0; i < num.length; i++) {
+        if (num[i] !== num[i+1]) 
+            count++;
+    }
+    console.log(count);
+
+};
+lengthOfLongestSubstring("aa");
