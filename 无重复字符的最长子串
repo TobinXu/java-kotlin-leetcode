@@ -1,12 +1,20 @@
 //  无重复字符的最长子串
-var lengthOfLongestSubstring = function(s) {
-    var num = s.split("");
-    var count = 0;
-    for (let i = 0; i < num.length; i++) {
-        if (num[i] !== num[i+1]) 
-            count++;
-    }
-    console.log(count);
+// 思路：使用新数组arr然后每一轮循环都维护max。
+// 每一轮判断字符串的下一个元素是否存在于数组arr中，通过用indexOf方法（如果有返回下标，没有返回-1）
+// 如果数组arr中存在，那么删掉
+// var lengthOfLongestSubstring = function(s) {
+//     let arr = [];
+//     let max = 0;
+//     let index =0;
+//     for (let i =0; i< s.length;i++) {
+//         index = arr.indexOf(s[i]);
+//         if(index !== -1) {
+//             arr.splice(0, index+1);
+//         }
+//         arr.push(s[i]);
+//         max = Math.max(arr.length, max);
+//     }
+//     console.log(max);  
+// };
+// lengthOfLongestSubstring("pwwkew");
 
-};
-lengthOfLongestSubstring("aa");
