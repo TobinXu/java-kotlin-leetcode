@@ -1,0 +1,29 @@
+// 字符串的排列
+题目：在S2中找到s1的排列
+// charCodeAt(index) index指大于零小于字符串长度的数值，该函数返回字符串中字母的Unicode码,a是97
+思路：先定义一个26个字母的字典，遍历s1，将其写入。 然后遍历s2判断是否查到字符串。
+// 遍历s2怎么判断呢？用双指针，一个指向s2的开头，一个末尾，一开始向右移动末尾指针，增长子串，如果遇到字典中某个字母出现负值
+// 意味着s1中含有s1中没有的元素或存在s2中字符含有多个和s1中相同的。这时我们向右移动头指针，缩短子串，同时恢复字典上的值。
+// 在遍历图中，当找到对应的子串时，一定是字典中没有小于0并且和s1长度相同。
+var checkInclusion = function(s1, s2) {
+      if(typeof s1 !== "string" || typeof s2 !== "string" || s1.length ===0 || s2.length ===0) {return false;} 
+      let dictionary = new Array(26).fill(0);
+      for (let i = 0; i < s1.length; i++) {
+          let code = s1.charCodeAt(i) - 97;
+          dictionary[code]++;
+      }
+      for (let left = 0,right = 0; right < s2.length; right++) {
+        let code = s2.charCodeAt(right)-97;
+        dictionary[code]--;
+        while(dictionary[code] < 0) {
+            dictionary[s2.charCodeAt(left)-97]++;
+            left++;
+        }
+        if (right - left +1 === s1.length) 
+            return true;
+        
+      }
+        return false;
+}
+console.log(checkInclusion("ab","eidboaoo"));
+
