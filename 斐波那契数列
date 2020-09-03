@@ -1,0 +1,13 @@
+// 斐波拉切数列求和
+function Fib(n) {
+    if(n<1) {return false;}
+    if(n === 1 || n === 2) return 1;
+    let arr = [1,1];
+    for (let i = 2; i < n; i++) {
+        arr[i] = arr[i-1] + arr[i-2];
+    }
+    var k = arr.pop()
+    return k ;
+ }
+
+console.log(Fib(20));

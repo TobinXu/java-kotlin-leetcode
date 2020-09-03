@@ -1,0 +1,58 @@
+//leetcode206反转连表这道题很基础
+//可以想到用头插法，循环起来一个一个往新链表的头部插入原先结点，从而得到翻转后的链表
+
+//下面这个头插法我感觉和三指针遍历的思想差不多，都是把指针转向
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode new_head=null;// 初始化新链表
+        while(head!=null){
+            ListNode temp=head;// 记录原头结点
+            head=head.next;// 头结点后移
+            temp.next=new_head;// 将结点插入到新链表表头  注意 这款我感觉就是把结点指针信息从右换到左。。。
+            new_head=temp;// 更新新链表表头
+        }
+        return new_head;
+
+    }
+}
+
+
+
+//还有一种三指针遍历，可以理解为指针转向，把原来朝右边的指针循环转变成朝左边
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode pre=null;//新链表
+        ListNode cur=head;//让cur指向head从而代替head链表干活
+        while(cur!=null){
+            ListNode next=cur.next;//中间变量next来进行cur.next的存值工作
+            cur.next=pre;//将cur.next指针方向变向
+            pre=cur;//将pre移动到cur，相当于往后移动
+            cur=next;//cur也相应的往后移动
+        }
+        return pre;
+
+    }
+}
+
+// 反转链表 头插法
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+    let new_head = null;
+    while(head !== null){
+    let temp = head;   
+    head = head.next;
+    temp.next = new_head;
+    new_head = temp;
+    }
+    return new_head;
+};

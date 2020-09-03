@@ -1,0 +1,22 @@
+从数组里面选择最小的元素，将它与数组的第一个元素交换位置。
+再从数组剩下的元素中，选择最小的元素，将它与第二个元素位置进行交换。重复这样的操作，知道将整个数组进行排序。
+选择排序需要N^2/2次比较 和 N 次交换。
+
+// 选择排序
+function Select_Sort(nums) {
+    var N = nums.length;
+    for (let i=0; i < N-1; i++) {
+        var min = i;
+        for (let j = i + 1; j < N; j++) {
+            if (nums[j] < nums[min]) {
+                min = j;
+            }
+        }
+        var t = nums[i];
+        nums[i] = nums[min];
+        nums[min] = t;
+    }
+    console.log(nums);
+}
+var k = [2,1,8,4,6,7,3];
+Select_Sort(k);

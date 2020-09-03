@@ -1,0 +1,51 @@
+//leetcode21这道题是合并两个有序链表
+//思路我看了别人的解题答案有递归和迭代两种
+//先说迭代，看来看去我想到了这个图里面广度优先搜索的Dijsktra算法思想差不多啊
+//Dijsktra算法包含四个步骤：
+//1找出当前离起点最近的节点；
+//2对于该节点的邻居，检查是否有前往它们的更短路径，如果有，就更新其开销，并更新邻居的父节点；
+//3重复这个过程，直到对所有节点都这样做了；
+//4计算最终路径(路线和开销)。
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode prehead=new ListNode(-1); //初始化一个新链表
+
+        ListNode prev =prehead;
+        while(l1!=null&&l2!=null){//判断是否为空
+            if(l1.val<=l2.val){//如果l1的值小，那就让prev的next指向l1,l1继续后移  这里的l1，是小写的L，即L1的小写
+                prev.next=l1;
+                l1=l1.next;
+            }
+            else{
+                prev=l2;//否则指向l2
+                l2=l2.next;
+            }
+            prev=prev.next;//prev后移
+        }
+
+        prev.next=l1==null?l2:l1; //最后判断是l1没结点了还是l2没结点了，如果l1遍历完全了，直接将l2剩余结点接到prev.next上
+        return prehead.next;
+
+    }
+}
+
+
+//递归解法
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+       if(l1==null){
+           return l2;
+        }
+        else if(l2==null){
+            return l1;
+        }
+        else if(l1.val<l2.val){
+            l1.next=mergeTwoLists(l1.next,l2);//如果l1.val比l2.val小那就继续用l1.next的val继续比
+            return l1;
+        }
+        else{
+            l2.next=mergeTwoLists(l1,le.next);
+            return l2;
+        }
+}
+

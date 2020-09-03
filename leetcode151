@@ -1,0 +1,20 @@
+//翻转字符串中的单词
+//要求
+无空格字符构成一个单词。
+输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
+如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+利用语言特性快速解决
+//split将字符串按空格分割成字符串数组
+//reverse将字符串数组翻转
+//join将字符串数组连接
+
+class Solution{
+pulic String reverseWords(String s){
+//除去开头和末尾的空白字符
+s=s.trim();
+//正则匹配连续的空白字符作为分隔符分隔
+List<String>wordList=Arrays.asList(s.split("\\s+"));
+Collections.reverse(wordList);
+return String.join(" ",wordList);
+   }
+  }

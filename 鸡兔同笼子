@@ -1,0 +1,22 @@
+// 输入字符串"2,6"前面代表头的数目，后面代表脚的数目。要求求出鸡和兔子的数目，输出字符串"x,y"，前面代表鸡后面代表兔子的数量
+
+// 首先根据输入的字符串，存在一个字符串处理的过程
+// 需要对字符串切割，使用split,将字符串切割成一个数组，
+// 然后在对数组中的字符串元素进行类型转化为数值型
+// 假设兔头too为0，对鸡头递增进行循环，每循环一次进行判断是否满足条件
+function Chicken(headAndFoot) {
+    var str = headAndFoot.split(",");
+    var head = parseInt(str[0]);
+    var foot = parseInt(str[1]);
+    if(head <= 1) console.log("NODATA");
+    var too = 0;
+    for (var j =0; j < head; j++) {
+        too = head - j;
+        if (j * 2 + too * 4 === foot) {
+            console.log(j + ',' + too);
+        }
+    }
+}
+var k = '20,60';
+
+Chicken(k);

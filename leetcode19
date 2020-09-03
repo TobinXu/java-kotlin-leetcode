@@ -1,0 +1,22 @@
+//leetcode19 删除链表的倒数第 n 个节点
+
+//快慢指针，快指针先走n步，然后快慢一起走，直到快指针走到最后，
+//要注意的是可能是要删除第一个节点，这个时候可以直接返回head -> next
+//思路：一个是first一个是second。先让first走n步，然后再让first和second同时往前走，当first走到头时，second即是倒数第n+1个节点了。
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode fast=head;
+        while(n-->0){                 //先让fast先跑n个结点
+            fast=fast.next;
+        }
+        if(fast==null)return head.next; //如果已经到链表尾，那就是删除链表头结点。。。有点蒙
+        ListNode slow=head;
+        while(fast.next!=null){ //让慢的和快的一起向后遍历，知道快的到链表尾
+            fast=fast.next;
+            slow=slow.next;
+        }
+        slow.next=slow.next.next;//将慢结点的next指向下一个结点的结点，因为此时慢结点是倒数第n+1个结点
+        return head;
+
+    }
+}
