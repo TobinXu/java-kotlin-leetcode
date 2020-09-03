@@ -19,4 +19,5 @@ function Chicken(headAndFoot) {
 }
 var k = '20,60';
 
-Chicken(k);
+Chicken(k); // 10,10 十个鸡，十个兔子
+

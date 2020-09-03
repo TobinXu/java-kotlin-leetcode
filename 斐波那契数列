@@ -1,7 +1,10 @@
 // 斐波拉切数列求和
+F(N) = F(N-1) + F(N-2);
+// 数组法(1ms,要操作数组,效率比操作整型低一点)
 function Fib(n) {
     if(n<1) {return false;}
-    if(n === 1 || n === 2) return 1;
+    if(n === 1 || n === 2) return n;
+    // 建立数组
     let arr = [1,1];
     for (let i = 2; i < n; i++) {
         arr[i] = arr[i-1] + arr[i-2];
@@ -11,3 +14,11 @@ function Fib(n) {
  }
 
 console.log(Fib(20));
+
+
+// 斐波那契数列（递归解法）
+function fib(N) {
+  if (N ===0 || N === 1) return N;
+  return fib(N-1) + fib(N-2);
+}
+console.log(fib(10)); // 55

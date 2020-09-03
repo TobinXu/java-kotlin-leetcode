@@ -1,5 +1,7 @@
 数组元素重复中找唯一一个不重复的
+给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
 解法： 用异或运算^,将数组中的数字遍历异或运算，结果全不为0的即是唯一一个不重复的值
+a⊕b = (¬a ∧ b) ∨ (a ∧¬b)
 交换律：a ^ b ^ c <=> a ^ c ^ b
 
 任何数于0异或为任何数 0 ^ n => n
@@ -12,7 +14,7 @@
 function NumberFind(arr) {
     var len = arr.length;
     var res = -1;
-    if (len > 1) {
+    if (len >= 1) {
         res = arr[0];
         for (let i = 1; i < len; i++) {
             res = res ^ arr[i];
