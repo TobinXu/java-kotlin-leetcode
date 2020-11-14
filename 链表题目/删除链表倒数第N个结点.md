@@ -1,6 +1,6 @@
 fast 快指针提前走 n 步后，判断 fast.next 是否为 null ，即 fast 是否是最后一个节点，如果是，
 则 head 为倒数第 n 个节点，此时问题可以简化为删除头节点；如果不是， fast = fast.next ，fast
-再前进一步，slow 为倒数第 n+1 个节点，也解决了以上问题。
+再前进一步，然后一起走，当fast走到末尾时，slow 为倒数第 n+1 个节点，也可以解决以上问题。
 
 function removeNthFromEnd(head, n) {
   let [fast, slow] = [head, head];
